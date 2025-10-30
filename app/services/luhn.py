@@ -23,7 +23,7 @@ class LuhnService:
                     ).dict(),
                 )
             response: CardValidation = self.card_validation_response_builder(
-                cleaned_number, self.lunh_calculator(cleaned_number)
+                cleaned_number, self.luhn_calculator(cleaned_number)
             )
             logger.info(
                 f"Card number {masked_number} validation completed successfully, returning response"
@@ -68,7 +68,7 @@ class LuhnService:
         return ErrorResponse(code=str(number), error_message=message)
 
     ## Luhn algorithm implementation to validate the credit card number
-    def lunh_calculator(self, cleaned_number: str) -> bool:
+    def luhn_calculator(self, cleaned_number: str) -> bool:
         ## Maintain a running total for the Luhn algorithm
         total = 0
         reverse_digits = cleaned_number[::-1]
