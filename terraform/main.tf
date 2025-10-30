@@ -41,6 +41,7 @@ resource "aws_instance" "fastapi_app" {
               #!/bin/bash
               sudo yum update -y
               sudo yum install docker -y
+              sudo systemctl start docker
               sudo docker pull ghcr.io/kuma3156/creditcardvalidator/creditcardvalidatorapi:latest
               docker run -d -p 8000:8000 ghcr.io/kuma3156/creditcardvalidator/creditcardvalidatorapi:latest
               EOF
