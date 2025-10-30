@@ -10,25 +10,25 @@ from pydantic import BaseModel, Field
 
 
 class CardRequest(BaseModel):
-    number: str = Field(..., description='Credit card number')
+    number: str = Field(..., description="Credit card number")
 
 
 class Scheme(Enum):
-    visa = 'visa'
-    amex = 'amex'
-    mastercard = 'mastercard'
+    visa = "visa"
+    amex = "amex"
+    mastercard = "mastercard"
 
 
 class Message(Enum):
-    OK = 'OK'
+    OK = "OK"
 
 
 class CardValidation(BaseModel):
-    valid: bool = Field(..., description='Whether the card number passes Luhn check')
-    scheme: Scheme = Field(..., description='Card scheme')
-    message: Message = Field(..., description='Status message')
+    valid: bool = Field(..., description="Whether the card number passes Luhn check")
+    scheme: Scheme = Field(..., description="Card scheme")
+    message: Message = Field(..., description="Status message")
 
 
 class ErrorResponse(BaseModel):
-    code: str = Field(..., description='Error code')
-    error_message: str = Field(..., description='Detailed error message')
+    code: str = Field(..., description="Error code")
+    error_message: str = Field(..., description="Detailed error message")

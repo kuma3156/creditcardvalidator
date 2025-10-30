@@ -8,7 +8,7 @@ __pycache__/
 *.py[cod]
 
 # Pydantic-generated models
-app/models/generated_models/
+app/models/generated_models
 
 # Distribution / packaging
 build/

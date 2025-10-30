@@ -5,7 +5,7 @@ info:
   description: Validate credit card numbers using the Luhn algorithm
 
 paths:
-  /validate:
+  /api/validate:
     post:
       summary: Validate a credit card number
       requestBody:
@@ -23,6 +23,12 @@ paths:
                 $ref: '#/components/schemas/CardValidation'
         "400":
           description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Internal Server Error
           content:
             application/json:
               schema:
