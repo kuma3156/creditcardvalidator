@@ -215,6 +215,7 @@ curl http://<EC2_PUBLIC_IP>:8000/health
 
   * `AWS_ACCESS_KEY_ID`
   * `AWS_SECRET_ACCESS_KEY`
+* Note when deploying, please wait 2-3 minutes once complete to give time to ec2 to execute docker commands
 
 ---
 
