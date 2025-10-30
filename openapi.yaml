@@ -1,0 +1,76 @@
+openapi: 3.1.0
+info:
+  title: Credit Card Validator API
+  version: "1.0.0"
+  description: Validate credit card numbers using the Luhn algorithm
+
+paths:
+  /validate:
+    post:
+      summary: Validate a credit card number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardRequest'
+      responses:
+        "200":
+          description: Card validation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardValidation'
+        "400":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    CardRequest:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Credit card number
+      required:
+        - number
+
+    CardValidation:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the card number passes Luhn check
+        scheme:
+          type: string
+          enum:
+            - visa
+            - amex
+            - mastercard
+          description: Card scheme
+        message:
+          type: string
+          enum:
+            - OK
+          description: Status message
+      required:
+        - valid
+        - scheme
+        - message
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        error_message:
+          type: string
+          description: Detailed error message
+      required:
+        - code
+        - error_message
