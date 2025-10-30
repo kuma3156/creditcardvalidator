@@ -39,9 +39,10 @@ resource "aws_instance" "fastapi_app" {
   # Install Docker & run container
   user_data = <<-EOF
               #!/bin/bash
-              sudo apt-get update
-              sudo apt-get install -y docker.io
-              sudo docker run -d -p 8000:8000 ${var.docker_image}:latest
+              sudo yum update -y
+              sudo yum install docker -y
+              sudo docker pull ghcr.io/kuma3156/creditcardvalidator/creditcardvalidatorapi:latest
+              docker run -d -p 8000:8000 ghcr.io/kuma3156/creditcardvalidator/creditcardvalidatorapi:latest
               EOF
 
   tags = {
